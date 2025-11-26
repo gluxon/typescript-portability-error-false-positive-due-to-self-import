@@ -1,4 +1,8 @@
-This is a repro for a TypeScript bug. When compiling the packages in this repo topologically, TypeScript passes successfully.
+This is a repro for TypeScript issue [microsoft/TypeScript#62806](https://github.com/microsoft/TypeScript/issues/62806).
+
+## Repro
+
+When compiling the packages in this repo topologically, TypeScript passes successfully.
 
 ```console
 tsc -p packages/c/tsconfig.json
@@ -38,3 +42,11 @@ Found 1 error.
 ```
 
 TypeScript shouldn't produce different errors when running with the `--build` flag.
+
+## Cause
+
+This is due to the self-referencing that happens in package `c`. Self-referencing [was added in TypeScript 4.7 as a new feature](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-7.html#packagejson-exports-imports-and-self-referencing).
+
+https://github.com/gluxon/typescript-portability-error-false-positive-due-to-self-import/blob/577abeeb0670bd8145f95ae0acbecc54332164a0/packages/c/src/C2.ts#L1-L3
+
+There seems to be an issue with inferring types from dependencies when these self-references are present.
