@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "test-build-mode": "./test-build-mode.sh",
+    "test-working": "./test-working.sh"
+  },
+  "dependencies": {
+    "typescript": "5.9.3"
+  }
+}

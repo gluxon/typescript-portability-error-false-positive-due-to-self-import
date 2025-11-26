@@ -1,0 +1,17 @@
+{
+  "name": "b",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "compile": "tsc"
+  },
+  "dependencies": {
+    "c": "workspace:*"
+  }
+}
